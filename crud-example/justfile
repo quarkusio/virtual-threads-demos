@@ -1,0 +1,24 @@
+# Build and Run tests
+build:
+    mvn clean verify
+
+# Build without test
+quick:
+    mvn clean package -DskipTests
+
+# Launch dev mode
+dev:
+    export MAVEN_OPTS="-Dnet.bytebuddy.experimental=true"  && mvn quarkus:dev
+
+run: quick
+    docker run --ulimit memlock=-1:-1 -d -it --rm=true --memory-swappiness=0 \
+        --name postgres-quarkus-demo -e POSTGRES_USER=restcrud \
+        -e POSTGRES_PASSWORD=restcrud -e POSTGRES_DB=rest-crud \
+        -p 5432:5432 postgres:15-bullseye
+    echo "Run `just stop-database` to stop the database once you are done"
+    java -Dnet.bytebuddy.experimental=true -jar target/quarkus-app/quarkus-run.jar
+
+stop-database:
+  docker stop postgres-quarkus-demo
+
+

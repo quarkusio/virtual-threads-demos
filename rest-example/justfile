@@ -1,0 +1,15 @@
+# Build and Run tests
+build:
+    mvn clean verify
+
+# Build without test
+quick:
+    mvn clean package -DskipTests
+
+# Launch dev mode
+dev:
+    mvn quarkus:dev
+
+run: quick
+    java -jar target/quarkus-app/quarkus-run.jar
+
