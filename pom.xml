@@ -15,6 +15,7 @@
     <modules>
        <module>rest-example</module>
         <module>crud-example</module>
+        <module>kafka-example</module>
     </modules>
 
     
