@@ -106,7 +106,6 @@
                     <systemPropertyVariables>
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                         <maven.home>${maven.home}</maven.home>
-                        <net.bytebuddy.experimental>true</net.bytebuddy.experimental>
                     </systemPropertyVariables>
 <!--                    <argLine>-Djdk.tracePinnedThreads</argLine>-->
                 </configuration>
