@@ -1,0 +1,14 @@
+version: '3.5'
+
+name: kafka-example
+services:
+  kafka:
+    image: quay.io/ogunalp/kafka-native:latest
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+  redis:
+    image: redis/redis-stack-server:latest
+    ports:
+      - "6379:6379"

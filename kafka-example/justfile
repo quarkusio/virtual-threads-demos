@@ -1,0 +1,18 @@
+# Build and Run tests
+build:
+    mvn clean verify
+
+# Build without test
+quick:
+    mvn clean package -DskipTests
+
+# Launch dev mode
+dev:
+    export MAVEN_OPTS="-Dnet.bytebuddy.experimental=true"  && mvn quarkus:dev
+
+run: quick
+    docker compose up -d
+    java -Dnet.bytebuddy.experimental=true -Djdk.tracePinnedThreads=full -Dquarkus.redis.hosts=redis://localhost:6379 -jar target/quarkus-app/quarkus-run.jar
+
+stop:
+  docker compose down
