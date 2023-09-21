@@ -20,40 +20,40 @@ export class DemoGenerateButton extends LitElement {
       }
     `;
 
-    constructor() {
-        super();
+    static properties = {
+        _current: {state: true, type: Number},
+        _max: {state: true, type: Number},
+        _transactions: {state: true, type: Number},
+        _frauds: {state: true, type: Number}
     }
 
-    static properties = {
-        current: {type: Number},
-        max: {type: Number},
-        transactions: {type: Number},
-        frauds: {type: Number}
+    constructor() {
+        super();
+        this._current = 0;
+        this._max = 0;
+        this._transactions = 0;
+        this._frauds = 0;
     }
 
     render() {
         return html`
             <div class="concurrency">
-                <p>Number of transactions: ${this.transactions}</p>
-                <p>Number of detected frauds: ${this.frauds}</p>
-                <p>Current concurrency: ${this.current}</p>
-                <p>Max concurrency: ${this.max}</p>
+                <p>Number of transactions: ${this._transactions}</p>
+                <p>Number of detected frauds: ${this._frauds}</p>
+                <p>Current concurrency: ${this._current}</p>
+                <p>Max concurrency: ${this._max}</p>
             </div>`;
     }
 
     connectedCallback() {
         super.connectedCallback();
-        this.max = 0;
-        this.current = 0;
-        this.frauds = 0;
-        this.transactions = 0;
         const source = new EventSource("/observability");
         source.onmessage = ev => {
-            const  t = JSON.parse(ev.data);
-            this.max = t.m;
-            this.current = t.c;
-            this.frauds = t.f;
-            this.transactions = t.tx;
+            const t = JSON.parse(ev.data);
+            this._max = t.m;
+            this._current = t.c;
+            this._frauds = t.f;
+            this._transactions = t.tx;
         }
     }
 

@@ -39,18 +39,24 @@ export class DemoFrauds extends LitElement {
     `;
 
     static properties = {
-        "_frauds": {state: true, type: Array},
+        _frauds: {state: true, type: Array},
+    }
+
+    constructor() {
+        super();
+        this._frauds = [];
     }
 
 
     connectedCallback() {
         super.connectedCallback();
-        this._frauds = [];
         const source = new EventSource("/frauds");
         source.onmessage = ev => {
-            const  t = JSON.parse(ev.data);
-            console.log(t);
+            const t = JSON.parse(ev.data);
             this._frauds.unshift(t);
+            if (this._frauds.length > 100) {
+                this._frauds.pop();
+            }
             super.update(this._frauds);
         }
     }

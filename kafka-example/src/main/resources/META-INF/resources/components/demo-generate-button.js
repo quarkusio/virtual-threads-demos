@@ -6,6 +6,7 @@ import '@vaadin/text-area';
 import '@vaadin/form-layout';
 import '@vaadin/progress-bar';
 import '@vaadin/checkbox';
+import '@vaadin/horizontal-layout';
 import {until} from 'lit/directives/until.js';
 import '@vaadin/grid';
 import {columnBodyRenderer} from '@vaadin/grid/lit.js';
@@ -14,34 +15,51 @@ import '@vaadin/grid/vaadin-grid-sort-column.js';
 export class DemoGenerateButton extends LitElement {
     static styles = css`
       .button {
-        margin-right: 5px;
-        margin-bottom: 5px;
         cursor: pointer;
+      }
+      vaadin-text-field {
+        width: 50%;
       }
     `;
 
+    static properties = {
+        count: {type: Number}
+    }
+
     constructor() {
         super();
+        this.count = 2000
     }
 
     render() {
         return html`
-            <div class="button">
-                <vaadin-button @click=${() => this._generate()} class="button primary">
-                        Generate transactions
+            <vaadin-horizontal-layout theme="spacing padding"
+                                      style="align-items: baseline">
+                <vaadin-text-field
+                        label="Transactions"
+                        .value=${this.count}
+                        @value-changed=${e => {
+                            this.count = e.target.value
+                        }}
+                        @keyup=${e => e.key === "Enter" && this._generate()}
+                        allowed-char-pattern="[0-9]">
+                </vaadin-text-field>
+                <vaadin-button
+                               arial-label="Generate Transactions"
+                               @click=${this._generate} class="button primary">
+                    Generate
                 </vaadin-button>
-            </div>`;
+            </vaadin-horizontal-layout>`;
     }
 
     _generate() {
-        fetch("/transactions?count=2000", {
+        fetch(`/transactions?count=${this.count}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             },
         });
     }
-
 
 }
 
