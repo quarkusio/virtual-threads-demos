@@ -10,7 +10,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>kafka-example</artifactId>
+    <artifactId>pulsar-example</artifactId>
 
     <properties>
         <compiler-plugin.version>3.11.0</compiler-plugin.version>
@@ -37,7 +37,7 @@
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>
+            <artifactId>quarkus-smallrye-reactive-messaging-pulsar</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>

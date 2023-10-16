@@ -16,6 +16,7 @@
        <module>rest-example</module>
         <module>crud-example</module>
         <module>kafka-example</module>
+        <module>pulsar-example</module>
     </modules>
 
     
