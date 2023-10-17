@@ -1,0 +1,27 @@
+version: '3.8'
+
+name: pulsar-example
+services:
+  pulsar:
+    image: apachepulsar/pulsar:3.1.0
+    command: [
+      "sh", "-c",
+      "bin/apply-config-from-env.py conf/standalone.conf && bin/pulsar standalone -nfw -nss"
+    ]
+    ports:
+      - "6650:6650"
+    tmpfs:
+      - /pulsar/data
+    healthcheck:
+      test: bin/pulsar-admin namespaces list public | grep public/default || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+    environment:
+      PULSAR_PREFIX_transactionCoordinatorEnabled: true
+      PULSAR_PREFIX_systemTopicEnabled: true
+  redis:
+    image: redis/redis-stack-server:latest
+    ports:
+      - "6379:6379"

@@ -1,0 +1,21 @@
+# Build and Run tests
+build:
+    mvn clean verify
+
+# Build without test
+quick:
+    mvn clean package -DskipTests
+
+# Launch dev mode
+dev:
+    mvn quarkus:dev
+
+run: quick
+    docker compose up -d --wait
+    java -Djdk.tracePinnedThreads=full \
+    -Dpulsar.client.serviceUrl=pulsar://localhost:6650 \
+    -Dquarkus.redis.hosts=redis://localhost:6379 \
+    -jar target/quarkus-app/quarkus-run.jar
+
+stop:
+  docker compose down
