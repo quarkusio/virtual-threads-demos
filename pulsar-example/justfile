@@ -8,11 +8,11 @@ quick:
 
 # Launch dev mode
 dev:
-    export MAVEN_OPTS="-Dnet.bytebuddy.experimental=true"  && mvn quarkus:dev
+    mvn quarkus:dev
 
 run: quick
     docker compose up -d --wait
-    java -Dnet.bytebuddy.experimental=true -Djdk.tracePinnedThreads=full \
+    java -Djdk.tracePinnedThreads=full \
     -Dpulsar.client.serviceUrl=pulsar://localhost:6650 \
     -Dquarkus.redis.hosts=redis://localhost:6379 \
     -jar target/quarkus-app/quarkus-run.jar

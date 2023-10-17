@@ -3,7 +3,7 @@ version: '3.8'
 name: pulsar-example
 services:
   pulsar:
-    image: apachepulsar/pulsar:3.0.0
+    image: apachepulsar/pulsar:3.1.0
     command: [
       "sh", "-c",
       "bin/apply-config-from-env.py conf/standalone.conf && bin/pulsar standalone -nfw -nss"
@@ -19,7 +19,6 @@ services:
       retries: 5
       start_period: 5s
     environment:
-      PULSAR_PREFIX_advertisedListeners: internal:pulsar://localhost:6650,external:pulsar://pulsar:6650
       PULSAR_PREFIX_transactionCoordinatorEnabled: true
       PULSAR_PREFIX_systemTopicEnabled: true
   redis:
