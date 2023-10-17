@@ -12,7 +12,7 @@ dev:
 
 run: quick
     docker compose up -d
-    java -Djdk.tracePinnedThreads=full  -Dquarkus.redis.hosts=redis://localhost:6379 -jar target/quarkus-app/quarkus-run.jar
+    java -Djdk.tracePinnedThreads=full -Dpulsar.url=pulsar://localhost:6650  -Dquarkus.redis.hosts=redis://localhost:6379 -jar target/quarkus-app/quarkus-run.jar
 
 stop:
   docker compose down

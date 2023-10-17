@@ -1,0 +1,29 @@
+version: '3.5'
+
+name: pulsar-example
+services:
+  pulsar:
+    image: apachepulsar/pulsar:3.1.0
+    command: [
+      "sh", "-c",
+      "bin/pulsar standalone"
+    ]
+
+    ports:
+      - "6650:6650"
+    tmpfs:
+      - /pulsar/data
+    healthcheck:
+      test: curl --fail http://localhost:8080/admin/v2/clusters || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+    environment:
+      PULSAR_PREFIX_transactionCoordinatorEnabled: true
+      PULSAR_PREFIX_systemTopicEnabled: true
+
+  redis:
+    image: redis/redis-stack-server:latest
+    ports:
+      - "6379:6379"

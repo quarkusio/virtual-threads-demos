@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/png" href="favicon.ico">
+
+    <script async src="/_static/es-module-shims/dist/es-module-shims.js"></script>
+    <script src="/_importmap/dynamic-importmap.js"></script>
+
+    <script type="module">
+        import 'icons/font-awesome.js';
+        import 'components/demo-title.js';
+        import 'components/demo-generate-button.js';
+        import 'components/demo-concurrency.js';
+        import 'components/demo-frauds.js';
+    </script>
+
+    <link rel="stylesheet" href="fonts/red-hat-font.min.css">
+
+    <title>Fraud Detection</title>
+
+    <style>
+        :root {
+            --main-bg-color: hsla(0, 0%, 100%, 0.7);
+            --main-highlight-text-color: #e13245;
+        }
+
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100vh;
+            font-family: 'Red Hat Text', sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: var(--lumo-body-text-color);
+            background: var(--main-bg-color);
+        }
+
+        .middle {
+            margin-top: 2em;
+            overflow: hidden;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+        }
+
+        #page {
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-bottom: 10px;
+        }
+
+        .secondary {
+            display: flex;
+            gap: 20px;
+            justify-content: space-around;
+        }
+
+        #frauds {
+            display: block;
+            width: 60%;
+        }
+
+        #action {
+            gap: 20px;
+            display: block;
+            float: right;
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<demo-title></demo-title>
+
+<div class="middle">
+    <div id="frauds">
+        <demo-frauds></demo-frauds>
+    </div>
+    <div id="action">
+        <demo-generate-button></demo-generate-button>
+        <demo-concurrency></demo-concurrency>
+    </div>
+
+</div>
+
+</body>
+
+</html>
