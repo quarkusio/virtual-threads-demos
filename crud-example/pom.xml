@@ -20,7 +20,6 @@
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
         <quarkus.platform.version>${quarkus.version}</quarkus.platform.version>
-        <skipITs>true</skipITs>
         <surefire-plugin.version>3.0.0</surefire-plugin.version>
     </properties>
     <dependencyManagement>
@@ -112,4 +111,18 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>native</id>
+            <activation>
+                <property>
+                    <name>native</name>
+                </property>
+            </activation>
+            <properties>
+                <quarkus.package.type>native</quarkus.package.type>
+            </properties>
+        </profile>
+    </profiles>
 </project>

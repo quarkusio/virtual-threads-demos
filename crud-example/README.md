@@ -13,6 +13,23 @@ It uses Hibernate ORM with Panache, Hibernate Bean Validation, the Narayana tran
 > just build # Build the application
 > just dev # Run the application in dev mode
 > just run # Build an run the application
+> just build-native # Build a native image
+> just run-native # Run the native image (don't forget to build it first)
 ```
 
+When executed in _prod_ mode (with the `run` or `run-native` recipes), this application needs a database.
+You can start a PostgresSQL database with docker or podman:
+
+```shell
+> just start-database
+```
+
+Stop the database with:
+
+```shell
+> just stop-database
+```
+
+
 Once running, the endpoint is: http://localhost:8080.
+
