@@ -1,10 +1,9 @@
 package org.acme.crud;
 
 import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.junit5.virtual.ShouldNotPin;
+import io.quarkus.test.junit5.virtual.VirtualThreadUnit;
 import io.restassured.common.mapper.TypeRef;
-import me.escoffier.loom.loomunit.LoomUnitExtension;
-import me.escoffier.loom.loomunit.ShouldNotPin;
-import me.escoffier.loom.loomunit.ShouldPin;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.List;
 
@@ -23,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @QuarkusTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(LoomUnitExtension.class)
+@VirtualThreadUnit
 @ShouldNotPin
 class TodoResourceTest {
 
