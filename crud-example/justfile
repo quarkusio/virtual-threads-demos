@@ -31,3 +31,10 @@ build-native:
 run-native:
     echo "Run 'just stop-database' to stop the database once you are done"
     ./target/crud-example-1.0.0-SNAPSHOT-runner
+
+# Build the docker image (JVM)
+build-container-jvm:
+    mvn package -DskipTests
+
+build-container-native:
+    mvn package -DskipTests -Dnative
