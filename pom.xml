@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <quarkus.version>3.6.1</quarkus.version>
+        <quarkus.version>3.7.2</quarkus.version>
     </properties>   
 
     <modules>

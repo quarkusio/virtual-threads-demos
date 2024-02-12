@@ -59,9 +59,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>me.escoffier.loom</groupId>
-            <artifactId>loom-unit</artifactId>
-            <version>0.2.0</version>
+            <groupId>io.quarkus.junit5</groupId>
+            <artifactId>junit5-virtual-threads</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
