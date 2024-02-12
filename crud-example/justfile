@@ -35,6 +35,7 @@ run-native:
 # Build the docker image (JVM)
 build-container-jvm:
     mvn package -DskipTests
+    echo "Run  it with: 'docker run -it -p8080:8080 -e QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://docker.for.mac.localhost/rest-crud clement/virtual-threads-demos-crud-example:1.0.0-SNAPSHOT'"
 
 build-container-native:
     mvn package -DskipTests -Dnative

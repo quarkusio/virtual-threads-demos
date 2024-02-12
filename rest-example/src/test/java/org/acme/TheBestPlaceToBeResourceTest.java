@@ -1,14 +1,14 @@
 package org.acme;
 
 import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.junit5.virtual.ShouldNotPin;
+import io.quarkus.test.junit5.virtual.internal.VirtualThreadExtension;
 import io.restassured.RestAssured;
-import me.escoffier.loom.loomunit.LoomUnitExtension;
-import me.escoffier.loom.loomunit.ShouldNotPin;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @QuarkusTest
-@ExtendWith(LoomUnitExtension.class)
+@ExtendWith(VirtualThreadExtension.class)
 class TheBestPlaceToBeResourceTest {
 
 
